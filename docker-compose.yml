@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      VAA_DATABASE_URL: sqlite:////app/data/vaa.db
+      VAA_LLM_PROVIDER: ${VAA_LLM_PROVIDER:-mock}
+      VAA_OPENAI_MODEL: ${VAA_OPENAI_MODEL:-gpt-5.6}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      VAA_AUTO_SEED: "true"
+      VAA_DEMO_MODE: "true"
+    volumes:
+      - vaa_data:/app/data
+
+volumes:
+  vaa_data:

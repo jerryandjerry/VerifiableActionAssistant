@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-08-15T21:17:29.904646+00:00",
+  "summary": {
+    "passed": 8,
+    "total": 8,
+    "score": 1.0
+  },
+  "results": [
+    {
+      "id": "read-fast",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "lane": true,
+        "final_state": true,
+        "verification": true,
+        "expected_conflicts": true,
+        "security_signal": true,
+        "no_injection_echo": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 201,
+        "task_id": "task-22b19f287c43",
+        "lane": "READ_FAST",
+        "state": "COMPLETED",
+        "conflict_keys": [],
+        "ticket_count": 0
+      }
+    },
+    {
+      "id": "research-conflicts",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "lane": true,
+        "final_state": true,
+        "verification": true,
+        "expected_conflicts": true,
+        "security_signal": true,
+        "no_injection_echo": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 201,
+        "task_id": "task-d9d28915bb4f",
+        "lane": "RESEARCH_VERIFIED",
+        "state": "COMPLETED",
+        "conflict_keys": [
+          "aisle_width_m",
+          "workstation_count"
+        ],
+        "ticket_count": 0
+      }
+    },
+    {
+      "id": "action-approval",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "lane": true,
+        "final_state": true,
+        "verification": true,
+        "expected_conflicts": true,
+        "security_signal": true,
+        "no_injection_echo": true,
+        "reconciliation": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 201,
+        "task_id": "task-a5f46d8b00cc",
+        "lane": "ACTION_CONTROLLED",
+        "state": "COMPLETED",
+        "conflict_keys": [
+          "aisle_width_m",
+          "workstation_count"
+        ],
+        "ticket_count": 1
+      }
+    },
+    {
+      "id": "approval-rejection",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "lane": true,
+        "final_state": true,
+        "verification": true,
+        "expected_conflicts": true,
+        "security_signal": true,
+        "no_injection_echo": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 201,
+        "task_id": "task-d6fd511e7585",
+        "lane": "ACTION_CONTROLLED",
+        "state": "REJECTED",
+        "conflict_keys": [
+          "aisle_width_m",
+          "workstation_count"
+        ],
+        "ticket_count": 0
+      }
+    },
+    {
+      "id": "prompt-injection",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "lane": true,
+        "final_state": true,
+        "verification": true,
+        "expected_conflicts": true,
+        "security_signal": true,
+        "no_injection_echo": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 201,
+        "task_id": "task-7e0634ea347b",
+        "lane": "RESEARCH_VERIFIED",
+        "state": "COMPLETED",
+        "conflict_keys": [
+          "acoustic_nrc"
+        ],
+        "ticket_count": 0
+      }
+    },
+    {
+      "id": "timeout-reconciliation",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "lane": true,
+        "final_state": true,
+        "verification": true,
+        "expected_conflicts": true,
+        "security_signal": true,
+        "no_injection_echo": true,
+        "reconciliation": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 201,
+        "task_id": "task-43f8d3435dc0",
+        "lane": "ACTION_CONTROLLED",
+        "state": "COMPLETED",
+        "conflict_keys": [
+          "aisle_width_m",
+          "workstation_count"
+        ],
+        "ticket_count": 1
+      }
+    },
+    {
+      "id": "durable-resume",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "lane": true,
+        "final_state": true,
+        "verification": true,
+        "expected_conflicts": true,
+        "security_signal": true,
+        "no_injection_echo": true,
+        "reconciliation": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 201,
+        "task_id": "task-f8539456abab",
+        "lane": "ACTION_CONTROLLED",
+        "state": "COMPLETED",
+        "conflict_keys": [
+          "aisle_width_m",
+          "workstation_count"
+        ],
+        "ticket_count": 1
+      }
+    },
+    {
+      "id": "cross-tenant-denied",
+      "passed": true,
+      "checks": {
+        "http_status": true,
+        "ticket_count": true
+      },
+      "details": {
+        "create_status": 403,
+        "error": {
+          "error": "forbidden",
+          "message": "Cross-tenant project access is not allowed"
+        },
+        "ticket_count": 0
+      }
+    }
+  ]
+}

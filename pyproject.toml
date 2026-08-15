@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verifiable-action-assistant"
+version = "0.1.0"
+description = "A policy-governed, evidence-grounded, durable DesignOps assistant reference implementation."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Jerry — Portfolio Project" }]
+keywords = ["agents", "reliability", "rag", "fastapi", "openai", "human-in-the-loop"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "fastapi>=0.128,<1",
+  "uvicorn[standard]>=0.38,<1",
+  "pydantic>=2.12,<3",
+  "sqlalchemy>=2.0.50,<2.1",
+  "httpx>=0.28,<1",
+  "jinja2>=3.1,<4",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=2.53,<3"]
+postgres = ["psycopg[binary]>=3.2,<4"]
+dev = ["pytest>=9,<10", "pytest-cov>=7,<8", "ruff>=0.14,<1"]
+all = [
+  "openai>=2.53,<3",
+  "psycopg[binary]>=3.2,<4",
+  "pytest>=9,<10",
+  "pytest-cov>=7,<8",
+  "ruff>=0.14,<1",
+]
+
+[project.scripts]
+vaa = "vaa.cli:cli"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+vaa = ["web/*.html", "web/static/*.css", "web/static/*.js"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B008"]

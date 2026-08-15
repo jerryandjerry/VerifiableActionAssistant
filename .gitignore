@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+.env
+data/*.db
+data/*.db-*
+.DS_Store
+.idea/
+.vscode/
+
+# Unrelated licensed reference material kept locally
+*.pdf

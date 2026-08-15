@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verifiable Action Assistant</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">JERRY · CAPSTONE PROJECT</div>
+      <h1>Verifiable Action Assistant</h1>
+      <p>Evidence-grounded analysis, controlled actions, durable recovery.</p>
+    </div>
+    <div class="topbar-badges">
+      <span class="badge neutral" id="provider-badge">Mock analyzer</span>
+      <span class="badge neutral">FastAPI · SQLAlchemy</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel controls">
+      <div class="panel-heading">
+        <div>
+          <div class="eyebrow">TASK INPUT</div>
+          <h2>DesignOps request</h2>
+        </div>
+        <button class="button ghost small" id="reset-button">Reset demo</button>
+      </div>
+
+      <label>Preset
+        <select id="preset"></select>
+      </label>
+      <div class="field-grid">
+        <label>User
+          <select id="user"></select>
+        </label>
+        <label>Project
+          <select id="project"></select>
+        </label>
+      </div>
+      <label>Goal
+        <textarea id="goal" rows="8"></textarea>
+      </label>
+      <div class="field-grid">
+        <label>Requested action
+          <select id="requested-action">
+            <option value="create_jira_ticket">Create Jira ticket</option>
+            <option value="none">Research only</option>
+          </select>
+        </label>
+        <label>Failure injection
+          <select id="failure-mode">
+            <option value="none">None</option>
+            <option value="timeout_after_success">Timeout after success</option>
+            <option value="pause_after_approval">Pause after approval</option>
+          </select>
+        </label>
+      </div>
+      <button class="button primary wide" id="run-button">Run controlled workflow</button>
+      <p class="hint">No API key is required. The default deterministic analyzer makes every demo reproducible.</p>
+    </aside>
+
+    <section class="workspace">
+      <div id="empty-state" class="panel empty-state">
+        <div class="empty-icon">◎</div>
+        <h2>Run a scenario</h2>
+        <p>The UI will show the task contract, evidence ledger, approval boundary, side-effect receipt, and audit timeline.</p>
+      </div>
+
+      <div id="task-view" class="hidden">
+        <section class="panel task-header">
+          <div>
+            <div class="eyebrow">RUN</div>
+            <h2 id="task-id"></h2>
+          </div>
+          <div class="task-status-row">
+            <span class="badge" id="lane-badge"></span>
+            <span class="badge" id="state-badge"></span>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <div><div class="step-number">01</div><h3>Durable workflow state</h3></div>
+            <span class="muted">Persisted transitions, not a single request loop</span>
+          </div>
+          <div id="timeline" class="timeline"></div>
+        </section>
+
+        <div class="two-column">
+          <section class="panel">
+            <div class="section-title">
+              <div><div class="step-number">02</div><h3>Task contract</h3></div>
+            </div>
+            <div id="contract" class="definition-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="section-title">
+              <div><div class="step-number">03</div><h3>Verification gate</h3></div>
+            </div>
+            <div id="verification"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="section-title">
+            <div><div class="step-number">04</div><h3>Evidence ledger</h3></div>
+            <span class="muted">Claim → value → versioned source</span>
+          </div>
+          <div id="analysis-summary" class="callout"></div>
+          <div id="evidence" class="evidence-grid"></div>
+        </section>
+
+        <div class="two-column">
+          <section class="panel">
+            <div class="section-title">
+              <div><div class="step-number">05</div><h3>RFI proposal</h3></div>
+            </div>
+            <h4 id="rfi-subject"></h4>
+            <pre id="rfi-draft" class="document"></pre>
+          </section>
+
+          <section class="panel">
+            <div class="section-title">
+              <div><div class="step-number">06</div><h3>Controlled action</h3></div>
+            </div>
+            <div id="action-area"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="section-title">
+            <div><div class="step-number">07</div><h3>Audit timeline</h3></div>
+            <span class="muted">Who decided what, and when</span>
+          </div>
+          <div id="audit" class="audit-list"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
