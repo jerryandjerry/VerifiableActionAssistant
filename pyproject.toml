@@ -27,11 +27,11 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-openai = ["openai>=2.53,<3"]
+openai = ["openai>=2.53,<4"]
 postgres = ["psycopg[binary]>=3.2,<4"]
 dev = ["pytest>=9,<10", "pytest-cov>=7,<8", "ruff>=0.14,<1"]
 all = [
-  "openai>=2.53,<3",
+  "openai>=2.53,<4",
   "psycopg[binary]>=3.2,<4",
   "pytest>=9,<10",
   "pytest-cov>=7,<8",
