@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: vaa
+      POSTGRES_PASSWORD: vaa
+      POSTGRES_DB: vaa
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vaa -d vaa"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - vaa_pg:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      VAA_DATABASE_URL: postgresql+psycopg://vaa:vaa@db:5432/vaa
+      VAA_LLM_PROVIDER: ${VAA_LLM_PROVIDER:-mock}
+      VAA_OPENAI_MODEL: ${VAA_OPENAI_MODEL:-gpt-5.6}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      VAA_AUTO_SEED: "true"
+      VAA_WORKSPACE_RESET_ENABLED: "true"
+
+volumes:
+  vaa_pg:
